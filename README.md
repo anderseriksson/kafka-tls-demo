@@ -25,10 +25,10 @@ set VAULT_ADDR=http://127.0.0.1:8200
 
 ```
 vault auth enable userpass
-vault policy-write writers writers.hcl
+vault policy write writers writers.hcl
 vault write auth/userpass/users/vault_user password=vault_pass policies=writers
-vault mount pki
-vault mount-tune -max-lease-ttl=87600h pki
+vault secrets enable  pki
+vault secrets tune -max-lease-ttl=87600h pki
 vault write pki/root/generate/internal common_name=myvault.com ttl=87600h
 vault write pki/roles/kafka-broker allowed_domains="example.com" allow_subdomains="true" max_ttl="72h"
 vault write pki/roles/kafka-consumer allowed_domains="example.com" allow_subdomains="true" max_ttl="72h"
@@ -49,6 +49,8 @@ The `writers.hcl` file is located in the root of this repo.
 ```
 openssl pkcs12 -export -out keystore.pkcs12 -in certificate.pem -inkey private_key.pem
 ```
+
+This is the broker keystore password (not the same as the client keystore password referred to in for example src/main/java/com/steveperkins/tls/ProducerApp.java )
 
 * Convert the PCKS#12 keystore into a Java keystore:
 
