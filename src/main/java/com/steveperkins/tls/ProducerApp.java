@@ -28,9 +28,9 @@ public class ProducerApp {
 
         props.put("security.protocol", "SSL");
         props.put("ssl.keystore.location", "producer-keystore.jks");
-        props.put("ssl.keystore.password", "password123");
+        props.put("ssl.keystore.password", "clientPassword123");
         props.put("ssl.truststore.location", "producer-truststore.jks");
-        props.put("ssl.truststore.password", "password123");
+        props.put("ssl.truststore.password", "clientPassword123");
 
         try (final Producer<String, String> producer = new KafkaProducer<>(props)) {
             while (true) {

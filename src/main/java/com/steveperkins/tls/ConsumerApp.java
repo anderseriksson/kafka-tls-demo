@@ -31,9 +31,9 @@ public class ConsumerApp {
 
         props.put("security.protocol", "SSL");
         props.put("ssl.keystore.location", "consumer-keystore.jks");
-        props.put("ssl.keystore.password", "password123");
+        props.put("ssl.keystore.password", "clientPassword123");
         props.put("ssl.truststore.location", "consumer-truststore.jks");
-        props.put("ssl.truststore.password", "password123");
+        props.put("ssl.truststore.password", "clientPassword123");
 
         try (final KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(Arrays.asList("test"));

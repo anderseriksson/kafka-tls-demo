@@ -43,13 +43,13 @@ public class TlsUtils {
         final KeyStore keyStore = KeyStore.getInstance("jks");
         keyStore.load(null);
         final Certificate[] chain = { cert };
-        keyStore.setKeyEntry("privateKey", key, "password123".toCharArray(), chain);
-        keyStore.store(new FileOutputStream(prefix + "-keystore.jks"), "password123".toCharArray());
+        keyStore.setKeyEntry("privateKey", key, "clientPassword123".toCharArray(), chain);
+        keyStore.store(new FileOutputStream(prefix + "-keystore.jks"), "clientPassword123".toCharArray());
 
         final KeyStore trustStore = KeyStore.getInstance("jks");
         trustStore.load(null);
         trustStore.setCertificateEntry("issuingCA", ca);
-        trustStore.store(new FileOutputStream(prefix + "-truststore.jks"), "password123".toCharArray());
+        trustStore.store(new FileOutputStream(prefix + "-truststore.jks"), "clientPassword123".toCharArray());
     }
 
     private TlsUtils() {
