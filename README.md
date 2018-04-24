@@ -24,7 +24,7 @@ set VAULT_ADDR=http://127.0.0.1:8200
 ... and then:
 
 ```
-vault auth-enable userpass
+vault auth enable userpass
 vault policy-write writers writers.hcl
 vault write auth/userpass/users/vault_user password=vault_pass policies=writers
 vault mount pki
